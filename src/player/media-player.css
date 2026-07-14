@@ -1,0 +1,32 @@
+.media-player {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-ink);
+  color: var(--color-ink-inverse);
+  border-radius: 999px;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-label);
+}
+
+.media-player__play,
+.media-player__mute {
+  font: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: var(--space-1);
+}
+
+.media-player__select {
+  font: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  max-width: 10rem;
+}
+
+.media-player__select option {
+  color: var(--color-ink);
+}
