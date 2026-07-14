@@ -227,11 +227,16 @@
 }
 
 .article {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 24px;
-  border: 1px solid var(--color-ink);
   text-decoration: none;
+}
+
+/* hover-scaled card (Motion whileHover) rises above its neighbors */
+.article:hover {
+  z-index: 1;
 }
 
 .article--wide {
