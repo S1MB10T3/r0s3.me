@@ -2,13 +2,13 @@
 const COLUMNS: { label: string; href: string }[][] = [
   [
     // CHANGE-ME: real profile URLs
-    { label: 'Twitter', href: 'https://twitter.com/CHANGE-ME' },
-    { label: 'Bluesky', href: 'https://bsky.app/profile/CHANGE-ME' },
+    { label: 'Twitter', href: 'https://x.com/r0s3_me' },
+    { label: 'Bluesky', href: 'https://bsky.app/profile/s1mmy.bsky.social' },
   ],
   [
-    { label: 'Are.na', href: 'https://www.are.na/CHANGE-ME' },
-    { label: 'Instagram', href: 'https://instagram.com/CHANGE-ME' },
-    { label: 'Soundcloud', href: 'https://soundcloud.com/CHANGE-ME' },
+    { label: 'Are.na', href: 'https://www.are.na/r0s3-me/' },
+    { label: 'Instagram', href: 'https://www.instagram.com/r0s3.me/' },
+    { label: 'Soundcloud', href: 'https://soundcloud.com/r0s3_me' },
   ],
 ]
 
