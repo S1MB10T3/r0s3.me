@@ -41,11 +41,12 @@
   counter-reset: rail;
 }
 
+/* symmetric padding: content centers on the page like the Figma template
+   (the rail is a sticky corner label now, not a reserved right column) */
 .page-section {
   position: relative;
   counter-increment: rail;
   padding: var(--space-6) var(--space-5);
-  padding-right: calc(var(--space-5) + var(--rail-width));
 }
 
 .page-section--light {
@@ -74,10 +75,67 @@
   position: sticky;
   bottom: 24px;
   writing-mode: vertical-rl;
-  font-size: var(--font-size-label);
-  letter-spacing: 0.15em;
+  /* Figma template: Gravitica Mono DemiBold 48 (font family lands with the
+     token/font port) */
+  font-size: clamp(28px, 3.2vw, 48px);
+  font-weight: 600;
   white-space: nowrap;
   text-transform: uppercase;
+}
+
+/* ---- content measure (Figma template 156:45827) ----
+   Body copy is 16px in a 720px column; media runs wider at 940px. Both are
+   centered on the page. Wrap media in <Bleed> for the full-viewport case. */
+
+.page-section__body {
+  width: 100%;
+  max-width: 940px;
+  margin-inline: auto;
+  font-size: 1rem;
+}
+
+.page-section__body p,
+.page-section__body ul,
+.page-section__body ol,
+.page-section__body h1,
+.page-section__body h2,
+.page-section__body h3,
+.page-section__body h4,
+.page-section__body h5,
+.page-section__body h6,
+.page-section__body blockquote {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* markdown wraps images in <p>; media-bearing paragraphs take the media
+   measure instead of the text one */
+.page-section__body p:has(img),
+.page-section__body p:has(video),
+.page-section__body p:has(iframe) {
+  max-width: 940px;
+}
+
+.page-section__body img,
+.page-section__body video,
+.page-section__body iframe {
+  display: block;
+  width: 100%;
+  max-width: 940px;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* full-viewport media escape hatch: <Bleed>![](...)</Bleed> in MDX */
+.page-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.page-bleed img,
+.page-bleed video,
+.page-bleed iframe {
+  max-width: none;
 }
 
 .page-section__rail::after {

@@ -21,8 +21,10 @@ Single-page portfolio for R0K (Senior Product Designer), replacing the old Jekyl
   `src/overlay/OverlayRoot.tsx` (scroll lock, ESC/Back, focus, Go Back chip, frontmatter header).
 - **Generic page template** (Figma node 156:45827): frontmatter-driven Rive/video header, then
   `<Intro>` (light, has media player), 1..n `<Section title="...">` (dark), `<Postmortem>` (light).
-  Side-rail labels = uppercased `title` prop + CSS-counter position (DESIGN_02). Media inside
-  sections is plain MDX children (images, iframes), never props.
+  Side-rail labels = uppercased `title` prop + CSS-counter position (DESIGN_02), sticky at the
+  viewport's bottom-right (24/24) while their section is on screen. Media inside sections is
+  plain MDX children (images, iframes), never props. Desktop measure: text 720px, media 940px,
+  both centered; wrap media in `<Bleed>` for full-viewport width.
 - **Content registry is derived:** each page in `src/content/work/` owns its metadata; the
   registry (`src/content/registry.ts`) globs the folder, so adding a page = dropping a file
   (slug = filename). MDX pages use YAML frontmatter; bespoke TSX pages (e.g. `espa.tsx`)
