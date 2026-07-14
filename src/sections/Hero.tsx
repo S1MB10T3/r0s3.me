@@ -19,9 +19,9 @@ export function Hero() {
 
       <SocialLinks />
 
-      <div className="hero__art">
-        <img src="media/black.png" alt="" />
-      </div>
+      {/* empty slot for now — the lazy R3F HeroScene / video mounts here in
+          the animations pass (was a black.png placeholder, too distracting) */}
+      <div className="hero__art" />
 
       <div className="hero__info">
         <p>

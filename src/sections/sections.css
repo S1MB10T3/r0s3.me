@@ -58,8 +58,9 @@
   right: 48px;
 }
 
-/* large centered artwork, cropped by the hero's bottom edge (992px square
-   starting 14% down a 902px frame in Figma) */
+/* large centered artwork slot, cropped by the hero's bottom edge (992px
+   square starting 14% down a 902px frame in Figma). Empty until the hero
+   scene / video lands in the animations pass. */
 .hero__art {
   position: absolute;
   inset: 14% 0 0 0;
@@ -69,7 +70,9 @@
   pointer-events: none;
 }
 
-.hero__art img {
+.hero__art img,
+.hero__art video,
+.hero__art canvas {
   width: min(992px, 66vw);
   aspect-ratio: 1;
   object-fit: cover;
@@ -80,7 +83,8 @@
   right: 40px;
   bottom: 40px;
   width: min(469px, 55vw);
-  color: var(--color-ink-inverse); /* sits over the artwork (white in Figma) */
+  /* Figma has this white over the artwork; back to ink while the art slot is
+     empty, flip to var(--color-ink-inverse) when the hero scene lands */
   border-left: 1px solid currentColor;
   padding-left: 24px;
 }
