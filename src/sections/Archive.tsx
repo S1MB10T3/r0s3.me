@@ -6,7 +6,7 @@ import {
   useSpring,
   useTransform,
 } from 'motion/react'
-import { archiveWork } from '../content/registry'
+import { archiveWork, headerPreview } from '../content/registry'
 import type { OverlayEntry } from '../content/types'
 import { Tag } from '../components/Tag'
 import './sections.css'
@@ -67,7 +67,7 @@ function ArchiveArticle({ slug, entry }: { slug: string; entry: OverlayEntry }) 
     >
       <span className="article__image">
         <motion.img
-          src="media/black.png"
+          src={headerPreview(entry.header)}
           alt=""
           style={reduceMotion ? undefined : { x, y, scale: 1.15 }}
         />

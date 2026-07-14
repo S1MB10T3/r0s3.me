@@ -2,16 +2,23 @@
 title: Hook
 featured: true
 priority: 80
-header: { type: 'video', src: 'media/hook-header.mp4' }
+header: { type: 'image', src: 'media/hook/header.png' }
 tags: [Product, Art Direction, Branding]
 description: Options and Perpetuals DEX for NFT and other long-tail token access.
+images:
+  - media/hook/odyssey-desktop.png
+  - media/hook/odyssey-mobile.png
+  - media/hook/design-system-cover.png
+  - media/hook/perps-teaser.png
+  - media/hook/branding.png
 ---
 
-{/* Copy ported from Figma 145:34656. Media is /media/black.png until the
-    image pipeline lands (ADR action item); export sources, in page order:
-    Rectangle 3 desktop (153:45818), image 3 mobile (153:45823),
-    Rectangle 3 system cover (153:45811), Frame 12 palette pair (145:45691),
-    Perps Teaser 1 (153:45816), image 2 (153:45814). */}
+{/* Copy from Figma 145:34656. Media in public/media/hook/ from:
+    header.png (Hero 145:34657), odyssey-desktop.png (Desktop Screenshot,
+    153:45818), odyssey-mobile.png (Mobile Screenshot, 153:45823),
+    design-system-cover.png (Color Palette Box, 153:45811),
+    colors-palette.png (145:45692), colors-statuses.png (145:45693),
+    perps-teaser.png (153:45816), branding.png (Branding Image, 153:45814). */}
 
 <Intro>
   Hook is an options trading platform where experienced derivatives traders
@@ -21,7 +28,7 @@ description: Options and Perpetuals DEX for NFT and other long-tail token access
 </Intro>
 
 <Section title="odyssey">
-  ![Odyssey desktop trading interface](media/black.png)
+  ![Odyssey desktop trading interface](media/hook/odyssey-desktop.png)
 
   The Odyssey redesign was the centerpiece. Desktop had to be dense enough
   for an active trader to scan markets and execute fast, yet legible enough
@@ -29,7 +36,7 @@ description: Options and Perpetuals DEX for NFT and other long-tail token access
   visualization sat inside the ticket itself, so users saw their asymmetric
   exposure before committing.
 
-  ![Odyssey mobile PWA flows](media/black.png)
+  ![Odyssey mobile PWA flows](media/hook/odyssey-mobile.png)
 
   The mobile PWA compressed the desktop flow into a native-feeling app
   without dropping the educational scaffolding. Education surfaced
@@ -39,7 +46,7 @@ description: Options and Perpetuals DEX for NFT and other long-tail token access
 </Section>
 
 <Section title="designsystem">
-  ![Sayreville Strata design system cover](media/black.png)
+  ![Sayreville Strata design system cover](media/hook/design-system-cover.png)
 
   Sayreville Strata is the design system underneath the redesign, named for a
   Michelle Stuart piece built from layered brick and rag paper. Built on a
@@ -47,9 +54,9 @@ description: Options and Perpetuals DEX for NFT and other long-tail token access
   surface is a different arrangement of the same blocks.
 
   <div className="page-media-row">
-    ![Color palette](media/black.png)
+    ![Color palette](media/hook/colors-palette.png)
 
-    ![Status colors](media/black.png)
+    ![Status colors](media/hook/colors-statuses.png)
   </div>
 
   Hook's brand color is orange, one of the hardest cases for WCAG contrast
@@ -63,7 +70,7 @@ description: Options and Perpetuals DEX for NFT and other long-tail token access
 </Section>
 
 <Section title="branding">
-  ![Perps launch teaser](media/black.png)
+  ![Perps launch teaser](media/hook/perps-teaser.png)
 
   The brand had to read as a serious financial product without defaulting to
   the terminal-dark aesthetic that dominates the category. Perps, puts, and
@@ -71,7 +78,7 @@ description: Options and Perpetuals DEX for NFT and other long-tail token access
   type, and newspaper texture that made Hook feel approachable and rigorous
   at once, in product and in marketing.
 
-  ![Print-inspired brand applications](media/black.png)
+  ![Print-inspired brand applications](media/hook/branding.png)
 </Section>
 
 <Postmortem>

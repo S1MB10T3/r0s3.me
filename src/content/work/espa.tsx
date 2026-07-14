@@ -20,19 +20,23 @@ export const frontmatter: PageFrontmatter = {
   title: 'Espa Labs',
   featured: true,
   priority: 100,
-  header: { type: 'rive', src: 'rive/espa-header.riv' },
+  // image header from Espa case study Hero (87:408); may return to a Rive
+  // artboard when that asset lands
+  header: { type: 'image', src: 'media/espa/header.png' },
   tags: ['Product'],
   description:
     'About Espa helps teams move faster by streamlining collaboration and eliminating ' +
     'friction. Built for modern workflows, it adapts to how you work, not the other way around.',
+  images: ['media/espa/screen-1.png', 'media/espa/screen-2.png', 'media/espa/screen-3.png'],
 }
 
 interface Step {
   id: string
   title: string
   copy: string
-  /** Demo photo shown inside the phone mock. Placeholder until real Espa
-      demo captures land; swap src per step. */
+  /** Demo photo shown inside the phone mock. Pulled from Home Espa work strip
+      fills (103:105): inbox, permissions, task. Case-study frame 89:427 is still
+      an empty placeholder in Figma. */
   screen: string
 }
 
@@ -46,7 +50,7 @@ const STEPS: Step[] = [
       'This feature streamlines the workflow by consolidating key actions into a single, ' +
       'intuitive interface, reducing friction and enabling teams to move faster with ' +
       'greater confidence.',
-    screen: 'media/black.png',
+    screen: 'media/espa/screen-1.png',
   },
   {
     id: 'automation',
@@ -55,7 +59,7 @@ const STEPS: Step[] = [
       'Routine work runs itself. Espa watches for the moments that used to need a human ' +
       'in the loop and handles them end to end, surfacing only the decisions that ' +
       'actually deserve attention.',
-    screen: 'media/black.png',
+    screen: 'media/espa/screen-2.png',
   },
   {
     id: 'integration',
@@ -64,7 +68,7 @@ const STEPS: Step[] = [
       'Espa plugs into the tools teams already live in, so context follows the work. ' +
       'Conversations, documents, and tasks stay connected without anyone copying ' +
       'anything between apps.',
-    screen: 'media/black.png',
+    screen: 'media/espa/screen-3.png',
   },
 ]
 
