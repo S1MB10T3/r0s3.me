@@ -55,6 +55,23 @@
   padding: var(--space-6) var(--space-5);
 }
 
+/* Figma template: sections are at least 530 tall on desktop (Intro and
+   Postmortem frames are exactly 530), with the copy vertically centered.
+   Flex centering only moves the body when min-height wins; taller
+   sections are unaffected (the rail is absolute, so it doesn't care). */
+@media (min-width: 900px) {
+  .page-section {
+    min-height: 530px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .page-section__body {
+    flex: none;
+  }
+}
+
 .page-section--light {
   background: var(--color-surface);
   color: var(--color-ink);
