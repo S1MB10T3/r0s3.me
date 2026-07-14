@@ -24,9 +24,11 @@ custom domain.
 
 ## Add a page
 
-1. Create `src/content/case/slug.mdx` or `src/content/archive/slug.mdx`
+1. Create `src/content/work/slug.mdx`
    (frontmatter: `title`, `header`; body: `<Intro>`, `<Section title>`, `<Postmortem>`)
-2. Register the slug in `src/content/registry.ts`
+2. Register the slug in `src/content/registry.ts` with a `priority` (higher sorts first),
+   optional `featured: true` (big Work rows on Home), and optional `cell`
+   (`'wide'` / `'tall'` archive card footprint, 1x1 otherwise)
 3. It's live at `/#slug`
 
 See `docs/ADR-001-architecture.md` and `CLAUDE.md` for architecture details.

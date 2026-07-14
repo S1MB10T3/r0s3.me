@@ -1,4 +1,4 @@
-import { overlays } from '../content/registry'
+import { featuredWork } from '../content/registry'
 import { Tag } from '../components/Tag'
 import './sections.css'
 
@@ -16,7 +16,7 @@ const STRIP_WIDTHS = [
  * description, and a horizontally scrolling image strip.
  */
 export function Featured() {
-  const featured = Object.entries(overlays).filter(([, entry]) => entry.kind === 'case')
+  const featured = featuredWork()
 
   return (
     <section className="featured">
