@@ -51,7 +51,8 @@ const STEPS: Step[] = [
       'reach you before it can act. Each step was sequenced so you understand why it ' +
       'matters before you are asked to complete it, and animated walkthroughs of email ' +
       'labeling and scheduling play while Espa builds a playbook from your inbox, so you ' +
-      'never stare at a loader.',
+      'never stare at a loader. The flow ends off-app on purpose: Espa texts you, and ' +
+      'setup finishes in your messages, right where the agent will live.',
     screen: 'media/espa/screen-1.png',
   },
   {
