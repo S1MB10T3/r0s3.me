@@ -16,4 +16,11 @@ export interface OverlayEntry {
   title: string
   /** Lazy import of an MDX module (default export + frontmatter) or bespoke TSX component. */
   load: () => Promise<{ default: ComponentType; frontmatter?: PageFrontmatter }>
+  /** Shown on Home (Featured rows / Archive cards); duplicated from frontmatter
+      so Home never has to load a page chunk just to render its listing. */
+  tags?: string[]
+  /** Featured (case) rows only: blurb next to the brand image. */
+  description?: string
+  /** Archive cards only: mosaic footprint (Figma Frame 1). Defaults to square. */
+  card?: 'square' | 'wide' | 'tall'
 }

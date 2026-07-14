@@ -55,6 +55,7 @@ blog content comes along is still undecided.
 
 ## Remaining work (ADR action items)
 
-Tokens from Figma, real Home layout (3 breakpoints), real case study content, Rive assets,
-real hero scene, image pipeline (vite-imagetools), MP4 fallbacks for archive WebM video,
-DNS cutover from s1mb10t3.net.
+Tokens from Figma (Home layout is built but all media are `/media/black.png` placeholders and
+colors/type are placeholder tokens), animations/effects pass (overlay transitions, scroll work,
+remount lazy HeroScene in the hero art slot), real case study content, Rive assets, image
+pipeline (vite-imagetools), MP4 fallbacks for archive WebM video, DNS cutover from s1mb10t3.net.
