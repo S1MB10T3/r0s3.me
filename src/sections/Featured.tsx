@@ -35,14 +35,14 @@ export function Featured() {
 
           <div className="work__content">
             <a className="work__brand" href={`#${slug}`} aria-label={entry.title}>
-              <img src="/media/black.png" alt="" />
+              <img src="media/black.png" alt="" />
             </a>
             <div className="work__description">
               <p>{entry.description}</p>
             </div>
             <div className="work__strip">
               {(STRIP_WIDTHS[row % STRIP_WIDTHS.length] ?? []).map((width, i) => (
-                <img key={i} src="/media/black.png" alt="" style={{ width }} />
+                <img key={i} src="media/black.png" alt="" style={{ width }} />
               ))}
             </div>
           </div>

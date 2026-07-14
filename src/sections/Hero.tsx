@@ -15,13 +15,13 @@ export function Hero() {
   return (
     <section className="hero">
       <h1 className="hero__logo">
-        <img src="/media/black.png" alt="R0S3_ME" />
+        <img src="media/black.png" alt="R0S3_ME" />
       </h1>
 
       <SocialLinks />
 
       <div className="hero__art">
-        <img src="/media/black.png" alt="" />
+        <img src="media/black.png" alt="" />
       </div>
 
       <div className="hero__info">
