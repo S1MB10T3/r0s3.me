@@ -25,8 +25,9 @@ export const frontmatter: PageFrontmatter = {
   header: { type: 'image', src: 'media/espa/header.png' },
   tags: ['Product'],
   description:
-    'About Espa helps teams move faster by streamlining collaboration and eliminating ' +
-    'friction. Built for modern workflows, it adapts to how you work, not the other way around.',
+    'An AI assistant, in the truest sense: it books appointments, plans your week, and ' +
+    'follows up over email. I designed the onboarding flow and the Tasks and Memory ' +
+    'surfaces for the public launch.',
   images: ['media/espa/screen-1.png', 'media/espa/screen-2.png', 'media/espa/screen-3.png'],
 }
 
@@ -35,39 +36,40 @@ interface Step {
   title: string
   copy: string
   /** Demo photo shown inside the phone mock. Pulled from Home Espa work strip
-      fills (103:105): inbox, permissions, task. Case-study frame 89:427 is still
-      an empty placeholder in Figma. */
+      fills (103:105): inbox, permissions, task. */
   screen: string
 }
 
-/* Figma only mocks the first caption; the rest are placeholder copy in the
-   same register until the real feature walkthrough is written. */
+/* Copy source: vault Design Case Studies/Espa Labs.md. Steps follow the
+   three surfaces of the engagement: onboarding, Tasks, Memory. */
 const STEPS: Step[] = [
   {
-    id: 'discussion',
-    title: 'Feature/Discussion',
+    id: 'onboarding',
+    title: 'Flow/Onboarding',
     copy:
-      'This feature streamlines the workflow by consolidating key actions into a single, ' +
-      'intuitive interface, reducing friction and enabling teams to move faster with ' +
-      'greater confidence.',
+      'Setup is multi-step by nature: the agent needs context, permissions, and a way to ' +
+      'reach you before it can act. Each step was sequenced so you understand why it ' +
+      'matters before you are asked to complete it, and animated walkthroughs of email ' +
+      'labeling and scheduling play while Espa builds a playbook from your inbox, so you ' +
+      'never stare at a loader.',
     screen: 'media/espa/screen-1.png',
   },
   {
-    id: 'automation',
-    title: 'Feature/Automation',
+    id: 'tasks',
+    title: 'Surface/Tasks',
     copy:
-      'Routine work runs itself. Espa watches for the moments that used to need a human ' +
-      'in the loop and handles them end to end, surfacing only the decisions that ' +
-      'actually deserve attention.',
+      'Tasks is where the agent’s work becomes visible: queued, in flight, completed, ' +
+      'and failed, legible at a glance. The hard part was state disclosure. What is Espa ' +
+      'doing right now, what already failed and why, and what can you do about it.',
     screen: 'media/espa/screen-2.png',
   },
   {
-    id: 'integration',
-    title: 'Feature/Integration',
+    id: 'memory',
+    title: 'Surface/Memory',
     copy:
-      'Espa plugs into the tools teams already live in, so context follows the work. ' +
-      'Conversations, documents, and tasks stay connected without anyone copying ' +
-      'anything between apps.',
+      'Memory treats what the agent knows as a first-class object: visible, scopable, ' +
+      'editable, deletable. An assistant that acts on your behalf earns trust by being ' +
+      'transparent rather than magical.',
     screen: 'media/espa/screen-3.png',
   },
 ]
@@ -76,16 +78,22 @@ export default function Espa() {
   return (
     <>
       <Intro>
-        Espa Labs is an AI-first company building intelligent assistants that help teams
-        work smarter. Powered by cutting-edge language models, Espa's platform enables
-        seamless automation, natural conversation, and deep integration with the tools
-        you already use.
+        Espa is an AI assistant in the truest sense: it books doctor appointments, sets up
+        play dates, and follows up with coworkers over email. I joined on contract as UI/UX
+        consultant ahead of the public launch and designed the first-run onboarding plus the
+        Tasks and Memory surfaces, mobile-first, working directly with the founding team.
+        The core question: how do you make an agent’s state, history, and capabilities
+        legible to someone who has never used an agent product before?
       </Intro>
       <WorkSequence />
       <Postmortem>
-        Onboarding was a success! New users are up and running quickly, with guided setup
-        completing in under 5 minutes. Teams have praised the intuitive flow, and early
-        retention metrics show strong engagement from day one.
+        Espa launched publicly in May 2026. The check that mattered came before launch:
+        user interviews during the build showed people understood the onboarding and what
+        the agent was doing on their behalf, and the issues those sessions surfaced were
+        fixed before ship. The problem I keep turning over is agent-state legibility. The
+        current Tasks page errs toward familiarity; the next iteration could earn more
+        trust by behaving like a live ops surface and being explicit about what cannot be
+        interrupted.
       </Postmortem>
     </>
   )
@@ -121,7 +129,7 @@ function WorkSequence() {
           <div className="espa-stage">
             <StepCaption step={STEPS[0]} />
             <div className="espa-phone">
-              <StepScreen step={STEPS[0]} index={0} />
+              <StepScreen step={STEPS[0]} />
             </div>
           </div>
         )}
@@ -154,7 +162,7 @@ function SequenceStage({
       <div className="espa-phone">
         {STEPS.map((step, i) => (
           <FadeStep key={step.id} index={i} progress={scrollYProgress} zoom>
-            <StepScreen step={step} index={i} />
+            <StepScreen step={step} />
           </FadeStep>
         ))}
       </div>
@@ -230,13 +238,10 @@ function StepCaption({ step }: { step: Step }) {
   )
 }
 
-function StepScreen({ step, index }: { step: Step; index: number }) {
+function StepScreen({ step }: { step: Step }) {
   return (
     <div className="espa-screen">
       <img src={step.screen} alt="" />
-      {/* placeholder chrome: makes the sequencing visible while every demo
-          photo is still black.png; drop when real captures land */}
-      <span className="espa-screen__label">SCREEN_0{index + 1}</span>
     </div>
   )
 }
