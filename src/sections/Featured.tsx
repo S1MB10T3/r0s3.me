@@ -1,4 +1,4 @@
-import { overlays } from '../content/registry'
+import { featuredWork } from '../content/registry'
 import { Tag } from '../components/Tag'
 import './sections.css'
 
@@ -12,11 +12,11 @@ const STRIP_WIDTHS = [
 
 /**
  * Featured work rows (Figma 82:105): per row a header (title + tags left,
- * View More right) and a content band of brand image, bottom-aligned
- * description, and a horizontally scrolling image strip.
+ * View More right) and a content band (brand image, bottom-aligned
+ * description, image strip) that scrolls horizontally as one unit.
  */
 export function Featured() {
-  const featured = Object.entries(overlays).filter(([, entry]) => entry.kind === 'case')
+  const featured = featuredWork()
 
   return (
     <section className="featured">

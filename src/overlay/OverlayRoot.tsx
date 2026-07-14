@@ -5,10 +5,11 @@ import type { OverlayEntry, PageFrontmatter } from '../content/types'
 import { Intro } from './template/Intro'
 import { Section } from './template/Section'
 import { Postmortem } from './template/Postmortem'
+import { Bleed } from './template/Bleed'
 import { MediaHeader } from './template/MediaHeader'
 import './overlay.css'
 
-const mdxComponents = { Intro, Section, Postmortem }
+const mdxComponents = { Intro, Section, Postmortem, Bleed }
 
 interface LoadedPage {
   Component: ComponentType

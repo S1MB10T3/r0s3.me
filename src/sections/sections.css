@@ -58,8 +58,9 @@
   right: 48px;
 }
 
-/* large centered artwork, cropped by the hero's bottom edge (992px square
-   starting 14% down a 902px frame in Figma) */
+/* large centered artwork slot, cropped by the hero's bottom edge (992px
+   square starting 14% down a 902px frame in Figma). Empty until the hero
+   scene / video lands in the animations pass. */
 .hero__art {
   position: absolute;
   inset: 14% 0 0 0;
@@ -69,7 +70,9 @@
   pointer-events: none;
 }
 
-.hero__art img {
+.hero__art img,
+.hero__art video,
+.hero__art canvas {
   width: min(992px, 66vw);
   aspect-ratio: 1;
   object-fit: cover;
@@ -80,7 +83,8 @@
   right: 40px;
   bottom: 40px;
   width: min(469px, 55vw);
-  color: var(--color-ink-inverse); /* sits over the artwork (white in Figma) */
+  /* Figma has this white over the artwork; back to ink while the art slot is
+     empty, flip to var(--color-ink-inverse) when the hero scene lands */
   border-left: 1px solid currentColor;
   padding-left: 24px;
 }
@@ -88,15 +92,6 @@
 .hero__info p {
   margin: 0;
   font-size: clamp(1rem, 0.6rem + 1.1vw, 1.5rem);
-}
-
-/* pill straddles the hero/featured boundary (Figma y=870 in a 902 frame) */
-.hero__player {
-  position: absolute;
-  left: 48px;
-  bottom: 0;
-  transform: translateY(50%);
-  z-index: 2;
 }
 
 /* ---- Featured work rows (82:105) ---- */
@@ -139,13 +134,19 @@
   white-space: nowrap;
 }
 
-/* 360px brand image | 300px bottom-aligned description | scrolling strip */
+/* Entire content band scrolls (Figma Content Section 141:83): brand + copy + strip */
 .work__content {
-  display: grid;
-  grid-template-columns: 360px 300px minmax(0, 1fr);
+  display: flex;
   gap: 8px;
   height: 240px;
   padding-left: 48px;
+  padding-right: 48px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.work__brand {
+  flex: 0 0 360px;
 }
 
 .work__brand img {
@@ -156,6 +157,7 @@
 
 .work__description {
   display: flex;
+  flex: 0 0 300px;
   align-items: flex-end;
 }
 
@@ -165,9 +167,8 @@
 
 .work__strip {
   display: flex;
+  flex-shrink: 0;
   gap: 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
 }
 
 .work__strip img {
@@ -226,11 +227,16 @@
 }
 
 .article {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 24px;
-  border: 1px solid var(--color-ink);
   text-decoration: none;
+}
+
+/* hover-scaled card (Motion whileHover) rises above its neighbors */
+.article:hover {
+  z-index: 1;
 }
 
 .article--wide {
@@ -315,19 +321,22 @@
     bottom: var(--space-4);
   }
 
-  .hero__player {
-    left: var(--space-3);
-  }
-
   .work__header {
     padding: 16px 24px;
   }
 
   /* tablet drops the image strip: brand + description share the band */
   .work__content {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     height: auto;
     padding: 0 24px;
+    overflow-x: visible;
+  }
+
+  .work__brand,
+  .work__description {
+    flex: unset;
   }
 
   .work__strip {

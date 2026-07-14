@@ -1,11 +1,10 @@
-import { MediaPlayer } from '../player/MediaPlayer'
 import { SocialLinks } from '../components/SocialLinks'
 import './sections.css'
 
 /**
  * Hero (Figma 72:5): logo top-left, social links top-right, large centered
  * artwork cropped by the section's bottom edge, designer blurb bottom-right
- * with a rule, media player pinned bottom-left.
+ * with a rule. Media player is fixed viewport chrome mounted in App.
  *
  * Layout pass: artwork + logo are black.png placeholders. The lazy R3F
  * HeroScene (src/three/HeroScene.tsx) replaces the artwork in the
@@ -20,19 +19,15 @@ export function Hero() {
 
       <SocialLinks />
 
-      <div className="hero__art">
-        <img src="media/black.png" alt="" />
-      </div>
+      {/* empty slot for now — the lazy R3F HeroScene / video mounts here in
+          the animations pass (was a black.png placeholder, too distracting) */}
+      <div className="hero__art" />
 
       <div className="hero__info">
         <p>
           A multidisciplinary designer crafting meaningful experiences at the intersection of art
           and technology.
         </p>
-      </div>
-
-      <div className="hero__player">
-        <MediaPlayer />
       </div>
     </section>
   )

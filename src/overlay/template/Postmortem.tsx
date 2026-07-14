@@ -4,7 +4,9 @@ import type { ReactNode } from 'react'
 export function Postmortem({ children }: { children: ReactNode }) {
   return (
     <section className="page-section page-section--light">
-      <span className="page-section__rail">POSTMORTEM</span>
+      <div className="page-section__railtrack">
+        <span className="page-section__rail">POSTMORTEM</span>
+      </div>
       <div className="page-section__body">{children}</div>
     </section>
   )

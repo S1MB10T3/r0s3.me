@@ -14,7 +14,8 @@ import { mixes, type Mix } from './mixes'
  * Global music player (ADR-001): one hidden SoundCloud widget iframe lives at
  * the app root, controlled via the SC Widget API. Every MediaPlayer UI
  * instance drives this shared state, so audio persists across overlays.
- * Browsers block autoplay: playback always starts from a user click.
+ * Mixes autoplay on load while muted; unmute (or play, if the browser blocked
+ * muted autoplay) requires a user gesture.
  */
 
 interface PlayerState {
@@ -31,14 +32,22 @@ const PlayerContext = createContext<PlayerState | null>(null)
 
 const WIDGET_API = 'https://w.soundcloud.com/player/api.js'
 const embedSrc = (url: string) =>
-  `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&visual=false&show_teaser=false`
+  `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&visual=false&show_teaser=false&auto_play=true`
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const widgetRef = useRef<SCWidget | null>(null)
+  const mutedRef = useRef(true)
   const [current, setCurrent] = useState<Mix>(mixes[0])
   const [playing, setPlaying] = useState(false)
-  const [muted, setMuted] = useState(false)
+  const [muted, setMuted] = useState(true)
+  // frozen: the iframe embeds the initial mix once; track changes go through
+  // widget.load() only. Binding src to `current` would navigate the iframe on
+  // every mix switch and, with auto_play in the embed URL, blast audio at the
+  // widget's default volume regardless of the muted state.
+  const [initialSrc] = useState(() => embedSrc(mixes[0].url))
+
+  mutedRef.current = muted
 
   // load the widget API script once, then bind the hidden iframe
   useEffect(() => {
@@ -47,6 +56,11 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     const init = () => {
       if (cancelled || !iframeRef.current || !window.SC) return
       const widget = window.SC.Widget(iframeRef.current)
+      widget.bind(window.SC.Widget.Events.READY, () => {
+        if (cancelled) return
+        widget.setVolume(0)
+        widget.play()
+      })
       widget.bind(window.SC.Widget.Events.PLAY, () => setPlaying(true))
       widget.bind(window.SC.Widget.Events.PAUSE, () => setPlaying(false))
       widget.bind(window.SC.Widget.Events.FINISH, () => setPlaying(false))
@@ -73,7 +87,12 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       const mix = mixes.find((m) => m.id === id)
       if (!mix || mix.id === current.id) return
       setCurrent(mix)
-      widgetRef.current?.load(mix.url, { auto_play: playing })
+      widgetRef.current?.load(mix.url, {
+        auto_play: playing,
+        callback: () => {
+          widgetRef.current?.setVolume(mutedRef.current ? 0 : 100)
+        },
+      })
     },
     [current.id, playing],
   )
@@ -83,10 +102,10 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const toggleMute = useCallback(() => {
-    setMuted((m) => {
-      widgetRef.current?.setVolume(m ? 100 : 0)
-      return !m
-    })
+    // read the ref, not the updater arg: updaters must stay pure (StrictMode
+    // double-invokes them)
+    widgetRef.current?.setVolume(mutedRef.current ? 100 : 0)
+    setMuted((m) => !m)
   }, [])
 
   return (
@@ -96,7 +115,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       <iframe
         ref={iframeRef}
         title="soundcloud-player"
-        src={embedSrc(current.url)}
+        src={initialSrc}
         allow="autoplay"
         style={{ position: 'absolute', width: 0, height: 0, border: 0, visibility: 'hidden' }}
       />
