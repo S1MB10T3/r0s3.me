@@ -7,19 +7,76 @@ tags: [Product, Art Direction, Branding]
 description: Options and Perpetuals DEX for NFT and other long-tail token access.
 ---
 
-{/* Placeholder — Hook may become the bespoke TSX page (ADR-001).
-    If so, change the registry to load a TSX module instead. */}
+{/* Copy ported from Figma 145:34656. Media is /media/black.png until the
+    image pipeline lands (ADR action item); export sources, in page order:
+    Rectangle 3 desktop (153:45818), image 3 mobile (153:45823),
+    Rectangle 3 system cover (153:45811), Frame 12 palette pair (145:45691),
+    Perps Teaser 1 (153:45816), image 2 (153:45814). */}
 
 <Intro>
-  Hook intro copy goes here.
+  Hook is an options trading platform where experienced derivatives traders
+  and complete newcomers share the same product. As the sole product designer
+  I led everything end to end: V1, the Odyssey redesign on desktop and
+  mobile, the design system, and the brand.
 </Intro>
 
-<Section title="work">
-  ![Hook work](media/placeholder.png)
+<Section title="odyssey">
+  ![Odyssey desktop trading interface](media/black.png)
 
-  Work caption copy.
+  The Odyssey redesign was the centerpiece. Desktop had to be dense enough
+  for an active trader to scan markets and execute fast, yet legible enough
+  that a first-timer could read the order ticket without bailing. Risk
+  visualization sat inside the ticket itself, so users saw their asymmetric
+  exposure before committing.
+
+  ![Odyssey mobile PWA flows](media/black.png)
+
+  The mobile PWA compressed the desktop flow into a native-feeling app
+  without dropping the educational scaffolding. Education surfaced
+  contextually inside the flow instead of a separate onboarding, so new users
+  learned options while they traded. Post-launch, Odyssey doubled daily
+  actives and lifted retention 47%.
+</Section>
+
+<Section title="designsystem">
+  ![Sayreville Strata design system cover](media/black.png)
+
+  Sayreville Strata is the design system underneath the redesign, named for a
+  Michelle Stuart piece built from layered brick and rag paper. Built on a
+  Material UI base and extended into composable primitives, every Hook
+  surface is a different arrangement of the same blocks.
+
+  <div className="page-media-row">
+    ![Color palette](media/black.png)
+
+    ![Status colors](media/black.png)
+  </div>
+
+  Hook's brand color is orange, one of the hardest cases for WCAG contrast
+  the moment it touches text on a light background. I tested every approved
+  color combination per theme and locked the tokens so each surface passed AA
+  without losing the brand. The result stayed unmistakably Hook across
+  desktop, mobile, and marketing.
+
+  Guidelines documented the reasoning behind each decision, not just the
+  values, so the system stayed consistent as new contributors joined.
+</Section>
+
+<Section title="branding">
+  ![Perps launch teaser](media/black.png)
+
+  The brand had to read as a serious financial product without defaulting to
+  the terminal-dark aesthetic that dominates the category. Perps, puts, and
+  calls got a warmer, print-inspired identity instead: orange, editorial
+  type, and newspaper texture that made Hook feel approachable and rigorous
+  at once, in product and in marketing.
+
+  ![Print-inspired brand applications](media/black.png)
 </Section>
 
 <Postmortem>
-  Closing reflection on Hook.
+  Hook was end-to-end ownership: research, product, system, and brand from
+  one seat. The Odyssey redesign doubled daily active users, lifted retention
+  47 percent, and set the company's single-day volume record at three times
+  the previous peak.
 </Postmortem>

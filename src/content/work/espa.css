@@ -1,0 +1,119 @@
+/* Espa bespoke page — scroll-driven demo sequence (Figma 87:407, frame
+   89:423). The section keeps the template's dark band + side rail; the body
+   is a sticky stage scrubbed by scroll. Desktop only for now, mobile designs
+   pending; below 900px the caption drops under the phone. */
+
+.espa-work {
+  padding: 0;
+}
+
+/* one viewport of runway per step, plus the viewport the stage occupies */
+.espa-track {
+  position: relative;
+  height: 400vh;
+}
+
+.espa-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* phone mock: 310x559 centered on the stage (Figma 89:427) */
+.espa-phone {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: min(310px, 64vw);
+  aspect-ratio: 310 / 559;
+  border-radius: 40px;
+  background: #d9d9d9;
+  overflow: hidden;
+}
+
+/* stacked screens/captions inside their fade wrappers */
+.espa-phone .espa-fade,
+.espa-screen {
+  position: absolute;
+  inset: 0;
+}
+
+.espa-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.espa-screen__label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  font-size: var(--font-size-label);
+  letter-spacing: 0.1em;
+  color: var(--color-ink-inverse);
+  opacity: 0.5;
+}
+
+/* feature caption left of the phone (Figma 89:432: x 188, width 336) */
+.espa-stage > .espa-fade {
+  position: absolute;
+  left: clamp(var(--space-3), 12vw, 188px);
+  top: 50%;
+  translate: 0 -50%;
+  width: min(336px, 36vw);
+}
+
+.espa-caption__title {
+  margin: 0 0 var(--space-3);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.espa-caption__copy {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.espa-progress {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-4);
+  translate: -50%;
+  width: min(310px, 64vw);
+  height: 2px;
+  background: color-mix(in srgb, var(--color-ink-inverse) 20%, transparent);
+}
+
+.espa-progress__bar {
+  width: 100%;
+  height: 100%;
+  background: var(--color-ink-inverse);
+  transform-origin: left;
+}
+
+@media (max-width: 900px) {
+  .espa-phone {
+    /* size by the height left over above the caption block + player chip,
+       so phone, caption, and player never overlap on short screens */
+    --phone-h: calc(100vh - 372px);
+    height: var(--phone-h);
+    max-height: 560px;
+    width: auto;
+    top: calc(var(--space-4) + var(--phone-h) / 2);
+  }
+
+  .espa-stage > .espa-fade {
+    left: var(--space-3);
+    right: var(--space-3);
+    top: auto;
+    /* clear the fixed media player chip in the bottom-left corner */
+    bottom: calc(var(--space-4) + 88px);
+    translate: none;
+    width: auto;
+  }
+}
