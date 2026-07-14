@@ -90,15 +90,6 @@
   font-size: clamp(1rem, 0.6rem + 1.1vw, 1.5rem);
 }
 
-/* pill straddles the hero/featured boundary (Figma y=870 in a 902 frame) */
-.hero__player {
-  position: absolute;
-  left: 48px;
-  bottom: 0;
-  transform: translateY(50%);
-  z-index: 2;
-}
-
 /* ---- Featured work rows (82:105) ---- */
 
 .featured {
@@ -313,10 +304,6 @@
   .hero__info {
     right: var(--space-3);
     bottom: var(--space-4);
-  }
-
-  .hero__player {
-    left: var(--space-3);
   }
 
   .work__header {

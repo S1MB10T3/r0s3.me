@@ -3,6 +3,7 @@ import { useHashRoute } from './routes/useHashRoute'
 import { overlays } from './content/registry'
 import { OverlayRoot } from './overlay/OverlayRoot'
 import { PlayerProvider } from './player/PlayerProvider'
+import { MediaPlayer } from './player/MediaPlayer'
 import { Hero } from './sections/Hero'
 import { Featured } from './sections/Featured'
 import { Quote } from './sections/Quote'
@@ -27,6 +28,9 @@ export default function App() {
       <AnimatePresence>
         {entry && <OverlayRoot key={slug} slug={slug} entry={entry} onClose={close} />}
       </AnimatePresence>
+
+      {/* Fixed viewport chrome — outside main so it stays reachable over overlays */}
+      <MediaPlayer />
     </PlayerProvider>
   )
 }

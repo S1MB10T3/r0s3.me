@@ -1,4 +1,8 @@
 .media-player {
+  position: fixed;
+  left: 48px;
+  bottom: 48px;
+  z-index: 12; /* above overlay shell (10) and Go Back chip (11) */
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -7,6 +11,12 @@
   border-radius: 999px;
   padding: var(--space-1) var(--space-2);
   font-size: var(--font-size-label);
+}
+
+@media (max-width: 900px) {
+  .media-player {
+    left: var(--space-3);
+  }
 }
 
 .media-player__play,

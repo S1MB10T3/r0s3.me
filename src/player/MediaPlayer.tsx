@@ -3,7 +3,8 @@ import './media-player.css'
 
 /**
  * The Media Player widget from Figma (pill: bars icon, mix dropdown, mute).
- * Purely presentational — all state lives in PlayerProvider.
+ * Fixed to the viewport (48 / 48 desktop). Purely presentational — all state
+ * lives in PlayerProvider. Mount once at App root.
  * TODO: replace the bars glyph + states with the Rive animation.
  */
 export function MediaPlayer() {
