@@ -14,7 +14,9 @@ interface Props {
 export function Section({ title = 'section', children }: Props) {
   return (
     <section className="page-section page-section--dark">
-      <span className="page-section__rail">{title}</span>
+      <div className="page-section__railtrack">
+        <span className="page-section__rail">{title}</span>
+      </div>
       <div className="page-section__body">{children}</div>
     </section>
   )

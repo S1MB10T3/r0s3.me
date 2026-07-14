@@ -58,12 +58,22 @@
   color: var(--color-ink-inverse);
 }
 
-.page-section__rail {
+/* Full-height track hugging the section's right edge. The label inside is
+   sticky, so it rides the viewport's bottom-right corner (24/24) while the
+   section is on screen and leaves with the section as it scrolls off. */
+.page-section__railtrack {
   position: absolute;
-  top: 50%;
-  right: var(--space-3);
-  transform: rotate(90deg) translateX(-50%);
-  transform-origin: right center;
+  inset: 24px 24px 24px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.page-section__rail {
+  position: sticky;
+  bottom: 24px;
+  writing-mode: vertical-rl;
   font-size: var(--font-size-label);
   letter-spacing: 0.15em;
   white-space: nowrap;

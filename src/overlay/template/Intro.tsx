@@ -4,7 +4,9 @@ import type { ReactNode } from 'react'
 export function Intro({ children }: { children: ReactNode }) {
   return (
     <section className="page-section page-section--light">
-      <span className="page-section__rail">INTRO</span>
+      <div className="page-section__railtrack">
+        <span className="page-section__rail">INTRO</span>
+      </div>
       <div className="page-section__body">{children}</div>
     </section>
   )
