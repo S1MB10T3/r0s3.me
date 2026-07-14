@@ -41,9 +41,10 @@ Figma: https://www.figma.com/design/sMbXlMfbjXPypLeq8MxBJG/R0S3.me
 
 ## Content migration
 
-Old Jekyll repo (S1MB10T3.github.io) holds archive content: `_art/*.md` (frontmatter + images +
-Vimeo iframes), `_design/*.html`, `_posts/*.md`. Convert to MDX under `src/content/archive/`
-(near 1:1; script it). Whether `_posts` blog content comes along is undecided.
+Old Jekyll repo (S1MB10T3.github.io) archive content is migrated: all `_art/*.md` and
+`_design/*.html` pages live as MDX under `src/content/archive/` with optimized media in
+`public/media/<slug>/` (WebP max 1600px, WebM video; no MP4 fallbacks yet). Whether `_posts`
+blog content comes along is still undecided.
 
 ## Conventions
 
@@ -54,6 +55,6 @@ Vimeo iframes), `_design/*.html`, `_posts/*.md`. Convert to MDX under `src/conte
 
 ## Remaining work (ADR action items)
 
-Tokens from Figma, real Home layout (3 breakpoints), real case study content, Jekyll archive
-migration, Rive assets, real hero scene, image pipeline (vite-imagetools), DNS cutover from
-s1mb10t3.net.
+Tokens from Figma, real Home layout (3 breakpoints), real case study content, Rive assets,
+real hero scene, image pipeline (vite-imagetools), MP4 fallbacks for archive WebM video,
+DNS cutover from s1mb10t3.net.
