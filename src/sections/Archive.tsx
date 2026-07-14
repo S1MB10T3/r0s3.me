@@ -61,6 +61,7 @@ function ArchiveArticle({ slug, entry }: { slug: string; entry: OverlayEntry }) 
       ref={ref}
       href={`#${slug}`}
       className={`article article--${entry.cell ?? 'default'}`}
+      aria-label={entry.title}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
     >
@@ -72,9 +73,11 @@ function ArchiveArticle({ slug, entry }: { slug: string; entry: OverlayEntry }) 
         />
       </span>
       <span className="article__info">
-        <span className="article__title">{entry.title}</span>
-        <span className="article__tags">
-          {entry.tags?.map((tag) => <Tag key={tag} label={tag} />)}
+        <span className="article__info-inner">
+          <span className="article__title">{entry.title}</span>
+          <span className="article__tags">
+            {entry.tags?.map((tag) => <Tag key={tag} label={tag} />)}
+          </span>
         </span>
       </span>
     </a>

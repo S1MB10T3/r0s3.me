@@ -11,7 +11,7 @@
   --color-header-tint: #dbe9fb;
 
   /* type — mono-forward, technical */
-  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-mono: 'Courier Prime', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --font-size-body: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --font-size-label: 0.6875rem;
   --font-size-display: clamp(2rem, 1.2rem + 3vw, 4rem);

@@ -274,11 +274,39 @@
   will-change: transform;
 }
 
+/* Article Info: grid 0fr→1fr so height can ease (display:none cannot). */
 .article__info {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.article__info-inner {
+  overflow: hidden;
+  min-height: 0;
   padding-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+/* Figma Article 118:341 — Default hides Article Info; Hover reveals it.
+   Touch / coarse pointers keep info visible (no hover affordance).
+   Spring from Motion generate-css-spring (bounce 0.1, duration 0.3s). */
+@media (hover: hover) and (pointer: fine) {
+  .article__info {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows 250ms linear(0, 0.6796, 1.0326, 1.0275, 1.0011, 0.9981, 0.9997, 1),
+      opacity 0.2s linear;
+  }
+
+  .article:hover .article__info,
+  .article:focus-visible .article__info {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
 }
 
 .article__title {
