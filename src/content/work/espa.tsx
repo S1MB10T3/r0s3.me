@@ -20,7 +20,7 @@ export const frontmatter: PageFrontmatter = {
   title: 'Espa Labs',
   featured: true,
   priority: 100,
-  // image header for now (also the Home preview); may return to a Rive
+  // image header from Espa case study Hero (87:408); may return to a Rive
   // artboard when that asset lands
   header: { type: 'image', src: 'media/espa/header.png' },
   tags: ['Product'],
@@ -34,8 +34,9 @@ interface Step {
   id: string
   title: string
   copy: string
-  /** Demo photo shown inside the phone mock. Placeholder until real Espa
-      demo captures land; swap src per step. */
+  /** Demo photo shown inside the phone mock. Pulled from Home Espa work strip
+      fills (103:105): inbox, permissions, task. Case-study frame 89:427 is still
+      an empty placeholder in Figma. */
   screen: string
 }
 
