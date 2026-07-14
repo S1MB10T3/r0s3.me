@@ -161,6 +161,8 @@
 
 .work__brand {
   flex: 0 0 360px;
+  overflow: hidden;
+  border-radius: 16px; /* Figma Brand Image / strip Images 103:104 */
 }
 
 .work__brand img {
@@ -189,6 +191,7 @@
   flex-shrink: 0;
   height: 240px;
   object-fit: cover;
+  border-radius: 16px;
 }
 
 /* ---- Quote (Frame 5) ---- */
@@ -260,6 +263,7 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  border-radius: 16px; /* Figma Article Image 118:341 */
 }
 
 .article__image img {

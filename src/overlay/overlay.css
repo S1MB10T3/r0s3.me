@@ -131,11 +131,49 @@
   margin-inline: auto;
 }
 
-/* markdown wraps images in <p>; media-bearing paragraphs take the media
-   measure instead of the text one */
+/* Figma Work gap 48 (156:45842). Covers:
+   - markdown <p> wrappers around images
+   - bare <video>/<iframe> MDX elements (direct body children)
+   - stacks of images that MDX collapses into one <p> */
+.page-section__body > :is(img, video, iframe),
+.page-section__body > :is(p:has(img), p:has(video), p:has(iframe)),
+.page-section__body > .page-media-row,
+.page-section__body > .page-bleed {
+  margin-block: 48px;
+}
+
+.page-section__body > :is(
+  img,
+  video,
+  iframe,
+  p:has(img),
+  p:has(video),
+  p:has(iframe),
+  .page-media-row,
+  .page-bleed
+):first-child {
+  margin-top: 0;
+}
+
+.page-section__body > :is(
+  img,
+  video,
+  iframe,
+  p:has(img),
+  p:has(video),
+  p:has(iframe),
+  .page-media-row,
+  .page-bleed
+):last-child {
+  margin-bottom: 0;
+}
+
 .page-section__body p:has(img),
 .page-section__body p:has(video),
 .page-section__body p:has(iframe) {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
   max-width: 940px;
 }
 
