@@ -50,9 +50,10 @@ Figma: https://www.figma.com/design/sMbXlMfbjXPypLeq8MxBJG/R0S3.me
 ## Content migration
 
 Old Jekyll repo (S1MB10T3.github.io) archive content is migrated: all `_art/*.md` and
-`_design/*.html` pages live as MDX under `src/content/archive/` with optimized media in
-`public/media/<slug>/` (WebP max 1600px, WebM video; no MP4 fallbacks yet). Whether `_posts`
-blog content comes along is still undecided.
+`_design/*.html` pages live as MDX in `src/content/work/` alongside the featured pages
+(there is no separate `archive/` folder; featured vs archive is the `featured` frontmatter
+flag), with optimized media in `public/media/<slug>/` (WebP max 1600px, WebM video; no MP4
+fallbacks yet). Whether `_posts` blog content comes along is still undecided.
 
 ## Conventions
 
@@ -63,7 +64,8 @@ blog content comes along is still undecided.
 
 ## Remaining work (ADR action items)
 
-Tokens from Figma (Home layout is built but all media are `/media/black.png` placeholders and
-colors/type are placeholder tokens), animations/effects pass (overlay transitions, scroll work,
-remount lazy HeroScene in the hero art slot), real case study content, Rive assets, image
+Tokens from Figma (colors/type are still placeholder tokens; real project media now exist for
+every page, but the logo in Hero/Footer and the hero art + quote graphic slots are still
+`/media/black.png` / empty placeholders), animations/effects pass (overlay transitions, scroll
+work, remount lazy HeroScene in the hero art slot), real case study content, Rive assets, image
 pipeline (vite-imagetools), MP4 fallbacks for archive WebM video, DNS cutover from s1mb10t3.net.
