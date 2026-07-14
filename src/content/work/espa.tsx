@@ -22,12 +22,12 @@ export const frontmatter: PageFrontmatter = {
   priority: 100,
   // image header from Espa case study Hero (87:408); may return to a Rive
   // artboard when that asset lands
-  header: { type: 'image', src: 'media/espa/header.png' },
+  header: { type: 'image', src: 'media/espa/header.webp' },
   tags: ['Product'],
   description:
     'About Espa helps teams move faster by streamlining collaboration and eliminating ' +
     'friction. Built for modern workflows, it adapts to how you work, not the other way around.',
-  images: ['media/espa/screen-1.png', 'media/espa/screen-2.png', 'media/espa/screen-3.png'],
+  images: ['media/espa/screen-1.webp', 'media/espa/screen-2.webp', 'media/espa/screen-3.webp'],
 }
 
 interface Step {
@@ -50,7 +50,7 @@ const STEPS: Step[] = [
       'This feature streamlines the workflow by consolidating key actions into a single, ' +
       'intuitive interface, reducing friction and enabling teams to move faster with ' +
       'greater confidence.',
-    screen: 'media/espa/screen-1.png',
+    screen: 'media/espa/screen-1.webp',
   },
   {
     id: 'automation',
@@ -59,7 +59,7 @@ const STEPS: Step[] = [
       'Routine work runs itself. Espa watches for the moments that used to need a human ' +
       'in the loop and handles them end to end, surfacing only the decisions that ' +
       'actually deserve attention.',
-    screen: 'media/espa/screen-2.png',
+    screen: 'media/espa/screen-2.webp',
   },
   {
     id: 'integration',
@@ -68,7 +68,7 @@ const STEPS: Step[] = [
       'Espa plugs into the tools teams already live in, so context follows the work. ' +
       'Conversations, documents, and tasks stay connected without anyone copying ' +
       'anything between apps.',
-    screen: 'media/espa/screen-3.png',
+    screen: 'media/espa/screen-3.webp',
   },
 ]
 
