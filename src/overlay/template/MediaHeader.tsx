@@ -10,6 +10,8 @@ export function MediaHeader({ header }: { header: HeaderSpec }) {
     <header className="page-header">
       {header.type === 'video' ? (
         <video src={header.src} poster={header.poster} autoPlay muted loop playsInline />
+      ) : header.type === 'image' ? (
+        <img src={header.src} alt={header.alt ?? ''} />
       ) : (
         <RiveHeader src={header.src} artboard={header.artboard} stateMachine={header.stateMachine} />
       )}

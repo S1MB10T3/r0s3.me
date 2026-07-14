@@ -79,7 +79,8 @@
   background: var(--color-header-tint);
 }
 
-.page-header video {
+.page-header video,
+.page-header img {
   width: 100%;
   height: 60vh;
   object-fit: cover;

@@ -3,10 +3,11 @@ import type { ComponentType } from 'react'
 export type HeaderSpec =
   | { type: 'rive'; src: string; artboard?: string; stateMachine?: string }
   | { type: 'video'; src: string; poster?: string }
+  | { type: 'image'; src: string; alt?: string }
 
 export interface PageFrontmatter {
   title: string
-  header: HeaderSpec
+  header?: HeaderSpec
   tags?: string[]
 }
 
