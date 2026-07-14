@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <span className="footer__logo">
-        <img src="/media/black.png" alt="R0S3_ME" />
+        <img src="media/black.png" alt="R0S3_ME" />
       </span>
       <SocialLinks />
     </footer>

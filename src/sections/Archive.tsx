@@ -20,7 +20,7 @@ export function Archive() {
             className={`article article--${entry.card ?? 'square'}`}
           >
             <span className="article__image">
-              <img src="/media/black.png" alt="" />
+              <img src="media/black.png" alt="" />
             </span>
             <span className="article__info">
               <span className="article__title">{entry.title}</span>

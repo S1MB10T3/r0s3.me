@@ -16,6 +16,8 @@ export default defineConfig({
     react(),
     imagetools(),
   ],
-  // custom domain (r0s3.me) serves from root
-  base: '/',
+  // relative base: the hash-routed SPA works both at the r0s3.me root and
+  // under the project path (s1mb10t3.net/r0s3.me/) before the DNS cutover.
+  // Media references in src/ are likewise relative (media/..., not /media/...).
+  base: './',
 })

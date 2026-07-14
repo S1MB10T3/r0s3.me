@@ -7,7 +7,7 @@ import './sections.css'
 export function Quote() {
   return (
     <section className="quote">
-      <img className="quote__art" src="/media/black.png" alt="" />
+      <img className="quote__art" src="media/black.png" alt="" />
       <blockquote>
         &ldquo;No longer structured by the polarity of public and private, the cyborg defines a
         technological polis based partly on a revolution of social relations in the oikos, the
