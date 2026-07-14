@@ -22,13 +22,13 @@ export const frontmatter: PageFrontmatter = {
   priority: 100,
   // image header from Espa case study Hero (87:408); may return to a Rive
   // artboard when that asset lands
-  header: { type: 'image', src: 'media/espa/header.png' },
+  header: { type: 'image', src: 'media/espa/header.webp' },
   tags: ['Product'],
   description:
     'An AI assistant, in the truest sense: it books appointments, plans your week, and ' +
     'follows up over email. I designed the onboarding flow and the Tasks and Memory ' +
     'surfaces for the public launch.',
-  images: ['media/espa/screen-1.png', 'media/espa/screen-2.png', 'media/espa/screen-3.png'],
+  images: ['media/espa/screen-1.webp', 'media/espa/screen-2.webp', 'media/espa/screen-3.webp'],
 }
 
 interface Step {
@@ -53,7 +53,7 @@ const STEPS: Step[] = [
       'labeling and scheduling play while Espa builds a playbook from your inbox, so you ' +
       'never stare at a loader. The flow ends off-app on purpose: Espa texts you, and ' +
       'setup finishes in your messages, right where the agent will live.',
-    screen: 'media/espa/screen-1.png',
+    screen: 'media/espa/screen-1.webp',
   },
   {
     id: 'tasks',
@@ -62,7 +62,7 @@ const STEPS: Step[] = [
       'Tasks is where the agent’s work becomes visible: queued, in flight, completed, ' +
       'and failed, legible at a glance. The hard part was state disclosure. What is Espa ' +
       'doing right now, what already failed and why, and what can you do about it.',
-    screen: 'media/espa/screen-2.png',
+    screen: 'media/espa/screen-2.webp',
   },
   {
     id: 'memory',
@@ -71,7 +71,7 @@ const STEPS: Step[] = [
       'Memory treats what the agent knows as a first-class object: visible, scopable, ' +
       'editable, deletable. An assistant that acts on your behalf earns trust by being ' +
       'transparent rather than magical.',
-    screen: 'media/espa/screen-3.png',
+    screen: 'media/espa/screen-3.webp',
   },
 ]
 
