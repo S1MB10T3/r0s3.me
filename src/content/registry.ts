@@ -1,60 +1,37 @@
-import type { OverlayEntry } from './types'
+import type { ComponentType } from 'react'
+import type { OverlayEntry, PageFrontmatter } from './types'
+
+type PageModule = { default: ComponentType; frontmatter?: PageFrontmatter }
 
 /**
- * Slug -> overlay page (ADR-001). Hash routing: r0s3.me/#caldera.
- * All pages live in src/content/work/. `featured: true` puts an entry in the
- * big Work rows on Home; everything else renders in the archive grid.
- * `priority` is the manual sort: higher numbers appear first within each
- * group. `cell` picks the archive card footprint (default / wide / tall).
+ * The registry is derived, not written by hand (ADR-001). Every page module
+ * in src/content/work/ carries its own metadata: MDX pages via YAML
+ * frontmatter, bespoke TSX pages via an exported `frontmatter` const.
+ * Adding a page = dropping a file in work/; the slug is the filename and the
+ * overlay is live at /#slug.
  */
-export const overlays: Record<string, OverlayEntry> = {
-  // featured (the top Work rows: Espa, Caldera, Hook)
-  espa: {
-    featured: true,
-    priority: 100,
-    title: 'Espa Labs',
-    tags: ['Product'],
-    description:
-      'About Espa helps teams move faster by streamlining collaboration and eliminating ' +
-      'friction. Built for modern workflows, it adapts to how you work, not the other way around.',
-    load: () => import('./work/espa.mdx'),
-  },
-  caldera: {
-    featured: true,
-    priority: 90,
-    title: 'Caldera',
-    tags: ['Product', 'Art Direction', 'Branding'],
-    description:
-      'AWS of Blockchains. Caldera host L2 chains and provides tools to help with the Metalayer ' +
-      'Access shared liquidity, enable cross-chain interactions, and reach users across the ' +
-      'entire Caldera ecosystem, and beyond.',
-    load: () => import('./work/caldera.mdx'),
-  },
-  hook: {
-    featured: true,
-    priority: 80,
-    title: 'Hook',
-    tags: ['Product', 'Art Direction', 'Branding'],
-    description: 'Options and Perpetuals DEX for NFT and other long-tail token access.',
-    load: () => import('./work/hook.mdx'),
-  },
 
-  // archive grid (migrated from the old Jekyll repo; _posts still undecided, see ADR-001)
-  element: { priority: 100, title: 'Element Finance', tags: ['UI/UX', 'Branding'], cell: 'wide', load: () => import('./work/element.mdx') },
-  salesforce: { priority: 95, title: 'Salesforce Bootcamp Simulation', tags: ['UX/UI'], load: () => import('./work/salesforce.mdx') },
-  '20xx': { priority: 90, title: '20XX Magazine', tags: ['UX/UI'], cell: 'wide', load: () => import('./work/20xx.mdx') },
-  cozy: { priority: 85, title: 'cozy.nyc', tags: ['UX/UI', 'React'], load: () => import('./work/cozy.mdx') },
-  nyfmf: { priority: 80, title: 'NYFMF Redesign', tags: ['UX/UI'], load: () => import('./work/nyfmf.mdx') },
-  faces: { priority: 75, title: 'FACE(S)', tags: ['Short Film'], cell: 'tall', load: () => import('./work/faces.mdx') },
-  cyborg: { priority: 70, title: 'Cyborgs. Robots. and Automotons.', tags: ['Art'], load: () => import('./work/cyborg.mdx') },
-  flowerpot: { priority: 65, title: 'Untitled 12.13.19', tags: ['Art'], load: () => import('./work/flowerpot.mdx') },
-  birdy: { priority: 60, title: 'To Ashes', tags: ['Art'], load: () => import('./work/birdy.mdx') },
-  fractured: { priority: 55, title: 'Fractured', tags: ['Art'], load: () => import('./work/fractured.mdx') },
-}
+// lazy imports — each page stays in its own code-split chunk
+const pages = import.meta.glob<PageModule>('./work/*.{mdx,tsx}')
+
+// metadata only, eagerly — served by the page-meta Vite plugin (see
+// vite.config.ts), so Home can list every page without pulling any page
+// body into the main chunk
+const metas = import.meta.glob<PageFrontmatter>('./work/*.{mdx,tsx}', {
+  eager: true,
+  import: 'default',
+  query: '?page-meta',
+})
+
+const slugOf = (path: string) => path.replace('./work/', '').replace(/\.(mdx|tsx)$/, '')
+
+export const overlays: Record<string, OverlayEntry> = Object.fromEntries(
+  Object.entries(metas).map(([path, meta]) => [slugOf(path), { ...meta, load: pages[path] }]),
+)
 
 type Entry = [slug: string, entry: OverlayEntry]
 
-const byPriority = ([, a]: Entry, [, b]: Entry) => b.priority - a.priority
+const byPriority = ([, a]: Entry, [, b]: Entry) => (b.priority ?? 0) - (a.priority ?? 0)
 
 /** Featured Work rows on Home, highest priority first. */
 export const featuredWork = (): Entry[] =>

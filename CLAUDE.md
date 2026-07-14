@@ -23,11 +23,15 @@ Single-page portfolio for R0K (Senior Product Designer), replacing the old Jekyl
   `<Intro>` (light, has media player), 1..n `<Section title="...">` (dark), `<Postmortem>` (light).
   Side-rail labels = uppercased `title` prop + CSS-counter position (DESIGN_02). Media inside
   sections is plain MDX children (images, iframes), never props.
-- **Content registry:** `src/content/registry.ts` maps slug -> lazy MDX/TSX module. All pages
-  live in `src/content/work/`. Per entry: `featured` boolean (true = big Work rows on Home:
-  espa, caldera, hook; false/absent = archive grid), `priority` integer (higher sorts first
-  within each group), `cell` ('default' 1x1 / 'wide' 2x1 / 'tall' 1x2, Figma Article component
-  118:341). Adding a page = MDX file + registry entry.
+- **Content registry is derived:** each page in `src/content/work/` owns its metadata; the
+  registry (`src/content/registry.ts`) globs the folder, so adding a page = dropping a file
+  (slug = filename). MDX pages use YAML frontmatter; bespoke TSX pages (e.g. `espa.tsx`)
+  export a self-contained `frontmatter` literal instead. Fields: `title`, `header`, `tags`,
+  `featured` boolean (true = big Work rows on Home: espa, caldera, hook; false/absent =
+  archive grid), `priority` integer (higher sorts first within each group), `cell`
+  ('default' 1x1 / 'wide' 2x1 / 'tall' 1x2, Figma Article component 118:341), `description`
+  (featured rows). The `page-meta` Vite plugin (vite.config.ts) extracts frontmatter at
+  build time so Home lists pages without loading their chunks.
 - **Music player:** DJ mixes on SoundCloud. ONE hidden SC widget iframe at app root
   (`src/player/PlayerProvider.tsx`), controlled via SC Widget API; custom UI only
   (`MediaPlayer.tsx`); mixes listed in `mixes.ts` (~3, dropdown + pause + mute). Audio persists
