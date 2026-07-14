@@ -41,6 +41,11 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const [current, setCurrent] = useState<Mix>(mixes[0])
   const [playing, setPlaying] = useState(false)
   const [muted, setMuted] = useState(true)
+  // frozen: the iframe embeds the initial mix once; track changes go through
+  // widget.load() only. Binding src to `current` would navigate the iframe on
+  // every mix switch and, with auto_play in the embed URL, blast audio at the
+  // widget's default volume regardless of the muted state.
+  const [initialSrc] = useState(() => embedSrc(mixes[0].url))
 
   mutedRef.current = muted
 
@@ -97,10 +102,10 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const toggleMute = useCallback(() => {
-    setMuted((m) => {
-      widgetRef.current?.setVolume(m ? 100 : 0)
-      return !m
-    })
+    // read the ref, not the updater arg: updaters must stay pure (StrictMode
+    // double-invokes them)
+    widgetRef.current?.setVolume(mutedRef.current ? 100 : 0)
+    setMuted((m) => !m)
   }, [])
 
   return (
@@ -110,7 +115,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       <iframe
         ref={iframeRef}
         title="soundcloud-player"
-        src={embedSrc(current.url)}
+        src={initialSrc}
         allow="autoplay"
         style={{ position: 'absolute', width: 0, height: 0, border: 0, visibility: 'hidden' }}
       />

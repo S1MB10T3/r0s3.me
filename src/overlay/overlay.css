@@ -8,6 +8,9 @@
 .overlay__scroll {
   height: 100%;
   overflow-y: auto;
+  /* .page-bleed uses 100vw, which includes this container's scrollbar width;
+     clip the overshoot instead of growing a horizontal scrollbar */
+  overflow-x: hidden;
   overscroll-behavior: contain;
   outline: none;
 }
