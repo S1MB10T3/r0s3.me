@@ -33,7 +33,8 @@
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  /* Figma hero is 902px on a ~982px desktop artboard (~92vh), not full bleed */
+  min-height: 92svh;
   background: var(--color-bg);
 }
 
@@ -82,16 +83,29 @@
   position: absolute;
   right: 40px;
   bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
   width: min(469px, 55vw);
-  /* Figma has this white over the artwork; back to ink while the art slot is
+  min-height: 215px;
+  /* Figma paints this white over the artwork; ink while the art slot is
      empty, flip to var(--color-ink-inverse) when the hero scene lands */
-  border-left: 1px solid currentColor;
-  padding-left: 24px;
+  color: var(--color-ink);
+}
+
+.hero__info-rule {
+  flex-shrink: 0;
+  width: 1px;
+  align-self: stretch;
+  background: currentColor;
+  transform-origin: top center;
 }
 
 .hero__info p {
   margin: 0;
-  font-size: clamp(1rem, 0.6rem + 1.1vw, 1.5rem);
+  max-width: 445px;
+  font-size: clamp(1rem, 0.75rem + 0.7vw, 1.5rem); /* 24px at desktop */
+  line-height: normal;
 }
 
 /* ---- Featured work rows (82:105) ---- */
@@ -234,11 +248,6 @@
   text-decoration: none;
 }
 
-/* hover-scaled card (Motion whileHover) rises above its neighbors */
-.article:hover {
-  z-index: 1;
-}
-
 .article--wide {
   grid-column: span 2;
 }
@@ -254,9 +263,11 @@
 }
 
 .article__image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  will-change: transform;
 }
 
 .article__info {
@@ -319,6 +330,7 @@
   .hero__info {
     right: var(--space-3);
     bottom: var(--space-4);
+    min-height: 0;
   }
 
   .work__header {
