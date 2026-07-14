@@ -1,0 +1,81 @@
+---
+title: Facebook MDT Simulation
+priority: 88
+header: { type: 'image', src: 'media/facebook-mdt/map.png' }
+tags: [UX/UI, Simulation]
+---
+
+{/* Migrated from the old Jekyll repo: _drafts/mdt.html */}
+
+<Intro>
+  How do we prepare managers for the new world of hybrid work teams? This was
+  my first project while working at Forio for Facebook (now Meta) when I was
+  brought in mid 2021.
+</Intro>
+
+<Section title="early draft">
+  Made a quick mock up of a potential simulation design for Facebook
+  Management Team. Since we were still figuring out the right approach to
+  what learning points we are trying to hit. Hybrid work is a new world and
+  there's no one set of answers to teach Managers to run their teams when
+  they're split across buildings, homes, and timezones.
+
+  <div className="page-media-row">
+    ![Early dashboard mockup](media/facebook-mdt/old-dashboard.png)
+
+    ![Early schedule mockup](media/facebook-mdt/old-schedule.png)
+  </div>
+
+  Started off building out screens that are useful for possible management
+  scenarios like a Dashboard to view your team, Calendar for planning
+  meetings, and a Video Chat screen for meetings.
+
+  ![Early NPC detail view](media/facebook-mdt/old-npc.png)
+
+  A detailed view of the player NPC team members. Providing a current
+  emotional state and some KPI details.
+</Section>
+
+<Section title="final design">
+  An issue with the early prototype was a lack of gameplay direction. The
+  notification bar provides a clear list of things that the player has to do
+  as well as a historical list of actions taken throughout the simulation.
+
+  <div className="page-media-row">
+    ![Dashboard world map](media/facebook-mdt/map.png)
+
+    ![Pulse Results KPIs](media/facebook-mdt/kpis.png)
+  </div>
+
+  In addition the dashboard has been changed to provide a map of where the
+  players team members are located across the globe, a list displaying all
+  the NPC's Pulse Results (a metric used internally at Meta), and an org
+  chart.
+
+  The character bio became a popup modal making it easier to access and leave
+  across the simulation on different pages.
+
+  ![NPC bio modal](media/facebook-mdt/npc.png)
+
+  The chat system has been pulled from prior Facebook simulations. By
+  clicking on message segments players can form a message which they can
+  send. Based on the segments chosen the model will give a positive or
+  negative response.
+
+  <div className="page-media-row">
+    ![Segment chat, composing](media/facebook-mdt/chat1.png)
+
+    ![Segment chat, response](media/facebook-mdt/chat2.png)
+  </div>
+
+  1 on 1 video calls displays the NPC's Pulse Results and changes in real
+  time based on the users response using the same chat system in the group
+  chat. While group video calls requires the player to mark flags of
+  instances negative traits and interactions during the meeting.
+
+  <div className="page-media-row">
+    ![1 on 1 video call](media/facebook-mdt/vc1.png)
+
+    ![Group video call](media/facebook-mdt/vc2.png)
+  </div>
+</Section>

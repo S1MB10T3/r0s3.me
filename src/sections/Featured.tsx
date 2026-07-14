@@ -1,9 +1,9 @@
-import { featuredWork } from '../content/registry'
+import { featuredWork, headerPreview } from '../content/registry'
 import { Tag } from '../components/Tag'
 import './sections.css'
 
 /* Article-image strip widths per row, from Figma (Work instances 103:105,
-   105:106, 105:192). Placeholder blocks until real screenshots land. */
+   105:106, 105:192). Filled from the page's `images` frontmatter list. */
 const STRIP_WIDTHS = [
   [393, 340, 248, 248],
   [427, 360, 360, 360],
@@ -35,15 +35,17 @@ export function Featured() {
 
           <div className="work__content">
             <a className="work__brand" href={`#${slug}`} aria-label={entry.title}>
-              <img src="media/black.png" alt="" />
+              <img src={headerPreview(entry.header)} alt="" />
             </a>
             <div className="work__description">
               <p>{entry.description}</p>
             </div>
             <div className="work__strip">
-              {(STRIP_WIDTHS[row % STRIP_WIDTHS.length] ?? []).map((width, i) => (
-                <img key={i} src="media/black.png" alt="" style={{ width }} />
-              ))}
+              {(STRIP_WIDTHS[row % STRIP_WIDTHS.length] ?? []).map((width, i) => {
+                const images = entry.images
+                const src = images?.length ? images[i % images.length] : 'media/black.png'
+                return <img key={i} src={src} alt="" style={{ width }} />
+              })}
             </div>
           </div>
         </article>

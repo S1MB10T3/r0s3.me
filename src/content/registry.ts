@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react'
-import type { OverlayEntry, PageFrontmatter } from './types'
+import type { HeaderSpec, OverlayEntry, PageFrontmatter } from './types'
 
 type PageModule = { default: ComponentType; frontmatter?: PageFrontmatter }
 
@@ -40,3 +40,12 @@ export const featuredWork = (): Entry[] =>
 /** Archive grid on Home (everything not featured), highest priority first. */
 export const archiveWork = (): Entry[] =>
   Object.entries(overlays).filter(([, e]) => !e.featured).sort(byPriority)
+
+/** Home preview image for a page: its header art. Video headers preview
+    with their poster, Rive headers have no still yet — both fall back to
+    the placeholder. */
+export const headerPreview = (header?: HeaderSpec): string => {
+  if (header?.type === 'image') return header.src
+  if (header?.type === 'video' && header.poster) return header.poster
+  return 'media/black.png'
+}

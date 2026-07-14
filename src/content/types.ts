@@ -26,6 +26,9 @@ export interface PageFrontmatter {
   priority?: number
   /** Featured rows only: blurb next to the brand image. */
   description?: string
+  /** Featured rows only: case study images, in page order. Home cycles
+      these through the image strip under the brand image. */
+  images?: string[]
   /** Archive cards only: mosaic footprint. Defaults to 'default' (1x1). */
   cell?: CellType
 }
