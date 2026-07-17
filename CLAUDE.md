@@ -47,6 +47,11 @@ Figma: https://www.figma.com/design/sMbXlMfbjXPypLeq8MxBJG/R0S3.me
 - Generic page template: 156:45827
 - Naming quirk: older frames call the closer "Postmodern"; canonical name is Postmortem.
 
+Moodboard: Are.na channel `r0s3-mood` (title "R0S3 Mood"). R0K's Are.na MCP connector
+(https://mcp.are.na/mcp, connected at the Claude account level) exposes its blocks; use it to
+pull the board's images and compare palette, type feel, density, and mood against the site
+(tokens in `src/styles/tokens.css` + screenshots of the running dev server).
+
 ## Content migration
 
 Old Jekyll repo (S1MB10T3.github.io) archive content is migrated: all `_art/*.md` and
