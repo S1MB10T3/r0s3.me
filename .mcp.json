@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "arena": {
-      "type": "http",
-      "url": "https://mcp.are.na/mcp"
-    }
-  }
-}

@@ -47,10 +47,10 @@ Figma: https://www.figma.com/design/sMbXlMfbjXPypLeq8MxBJG/R0S3.me
 - Generic page template: 156:45827
 - Naming quirk: older frames call the closer "Postmodern"; canonical name is Postmortem.
 
-Moodboard: Are.na channel `CHANGE-ME-channel-slug`. The `arena` MCP server (`.mcp.json`,
-hosted at https://mcp.are.na/mcp, OAuth via `/mcp`) exposes its blocks; use it to pull the
-board's images and compare palette, type feel, density, and mood against the site (tokens in
-`src/styles/tokens.css` + screenshots of the running dev server).
+Moodboard: Are.na channel `CHANGE-ME-channel-slug`. R0K's Are.na MCP connector
+(https://mcp.are.na/mcp, connected at the Claude account level) exposes its blocks; use it to
+pull the board's images and compare palette, type feel, density, and mood against the site
+(tokens in `src/styles/tokens.css` + screenshots of the running dev server).
 
 ## Content migration
 
