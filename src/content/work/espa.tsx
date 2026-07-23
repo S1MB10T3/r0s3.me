@@ -14,7 +14,8 @@ import './espa.css'
  *
  * Espa breaks from the template in the work section: the phone mock stays
  * pinned while scrolling scrubs through a sequence of demo screens, with
- * the feature caption swapping alongside (Figma 87:407, frame 89:423).
+ * the feature caption swapping alongside (Figma 87:407, frame 89:423 + the
+ * "Espa Work Cards" section 274:3777).
  */
 export const frontmatter: PageFrontmatter = {
   title: 'Espa Labs',
@@ -35,43 +36,65 @@ interface Step {
   id: string
   title: string
   copy: string
-  /** Demo photo shown inside the phone mock. Pulled from Home Espa work strip
-      fills (103:105): inbox, permissions, task. */
+  /** Full phone mock (Tabs Compact Light shell) exported from the card's
+      Figma frame, alpha corners baked in. */
   screen: string
+  /** Which side of the phone the caption sits on (Figma alternates L/R). */
+  side: 'left' | 'right'
 }
 
-/* Copy source: vault Design Case Studies/Espa Labs.md. Steps follow the
-   three surfaces of the engagement: onboarding, Tasks, Memory. */
+/* The five work cards from the Figma "Espa Work Cards" section (274:3777)
+   plus the in-frame card (89:423), in flow order: connect accounts, answer
+   questions, wait out processing, then the two product surfaces. */
 const STEPS: Step[] = [
   {
-    id: 'onboarding',
-    title: 'Flow/Onboarding',
+    id: 'privacy',
+    title: 'Informing Privacy',
     copy:
-      'Setup is multi-step by nature: the agent needs context, permissions, and a way to ' +
-      'reach you before it can act. Each step was sequenced so you understand why it ' +
-      'matters before you are asked to complete it, and animated walkthroughs of email ' +
-      'labeling and scheduling play while Espa builds a playbook from your inbox, so you ' +
-      'never stare at a loader. The flow ends off-app on purpose: Espa texts you, and ' +
-      'setup finishes in your messages, right where the agent will live.',
-    screen: 'media/espa/screen-1.webp',
+      "Espa's onboarding ensures users fully understand what data Espa can access and " +
+      "how it will be used. While Google and Microsoft disclose Espa's permissions on " +
+      'their end, a secondary confirmation reinforces how that access serves the user.',
+    screen: 'media/espa/card-privacy.webp',
+    side: 'left',
+  },
+  {
+    id: 'learning',
+    title: 'Learning You',
+    copy:
+      'Espa will ask you simple questions about your work and what you value most in ' +
+      'your day-to-day life, so we can start tailoring our services to your needs.',
+    screen: 'media/espa/card-learning.webp',
+    side: 'right',
+  },
+  {
+    id: 'loaders',
+    title: 'Hidden Loaders',
+    copy:
+      'While Espa is processing your emails and calendar to build an understanding of ' +
+      'the user we pad time with informational animations how Espa works and what it ' +
+      'can do to organize your life.',
+    // TODO: the animation slot in this card ships as a video/gif later; the
+    // static export stands in until that asset lands.
+    screen: 'media/espa/card-loaders.webp',
+    side: 'left',
   },
   {
     id: 'tasks',
-    title: 'Surface/Tasks',
+    title: 'Redesigned Task',
     copy:
-      'Tasks is where the agent’s work becomes visible: queued, in flight, completed, ' +
-      'and failed, legible at a glance. The hard part was state disclosure. What is Espa ' +
-      'doing right now, what already failed and why, and what can you do about it.',
-    screen: 'media/espa/screen-2.webp',
+      'Redesigned Tasks to better understand what tasks Espa works on, what is ' +
+      'repeatable, and provide short descriptions at a glance.',
+    screen: 'media/espa/card-task.webp',
+    side: 'right',
   },
   {
     id: 'memory',
-    title: 'Surface/Memory',
+    title: 'Redesigned Memory',
     copy:
-      'Memory treats what the agent knows as a first-class object: visible, scopable, ' +
-      'editable, deletable. An assistant that acts on your behalf earns trust by being ' +
-      'transparent rather than magical.',
-    screen: 'media/espa/screen-3.webp',
+      'Designed to make information memorable and easy to scan at a glance, so you can ' +
+      'quickly find what matters most without losing context.',
+    screen: 'media/espa/card-memory.webp',
+    side: 'left',
   },
 ]
 
@@ -128,7 +151,9 @@ function WorkSequence() {
           <SequenceStage scroller={scroller} trackRef={trackRef} />
         ) : (
           <div className="espa-stage">
-            <StepCaption step={STEPS[0]} />
+            <div className={`espa-fade espa-fade--${STEPS[0].side}`}>
+              <StepCaption step={STEPS[0]} />
+            </div>
             <div className="espa-phone">
               <StepScreen step={STEPS[0]} />
             </div>
@@ -156,7 +181,12 @@ function SequenceStage({
   return (
     <div className="espa-stage">
       {STEPS.map((step, i) => (
-        <FadeStep key={step.id} index={i} progress={scrollYProgress}>
+        <FadeStep
+          key={step.id}
+          index={i}
+          progress={scrollYProgress}
+          className={`espa-fade--${step.side}`}
+        >
           <StepCaption step={step} />
         </FadeStep>
       ))}
@@ -185,12 +215,14 @@ function FadeStep({
   index,
   progress,
   zoom = false,
+  className,
   children,
 }: {
   index: number
   progress: MotionValue<number>
   /** Screens also settle from a slight zoom as they fade in. */
   zoom?: boolean
+  className?: string
   children: ReactNode
 }) {
   const n = STEPS.length
@@ -224,7 +256,10 @@ function FadeStep({
   )
 
   return (
-    <motion.div className="espa-fade" style={{ opacity, scale }}>
+    <motion.div
+      className={className ? `espa-fade ${className}` : 'espa-fade'}
+      style={{ opacity, scale }}
+    >
       {children}
     </motion.div>
   )
