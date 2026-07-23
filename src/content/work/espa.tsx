@@ -22,8 +22,9 @@ export const frontmatter: PageFrontmatter = {
   featured: true,
   priority: 100,
   // image header from Espa case study Hero (87:408); may return to a Rive
-  // artboard when that asset lands
-  header: { type: 'image', src: 'media/espa/header.webp' },
+  // artboard when that asset lands. Renamed from header.webp when the logo
+  // lockup changed so stale caches can't serve the old banner.
+  header: { type: 'image', src: 'media/espa/header-lockup.webp' },
   tags: ['Product'],
   description:
     'An AI assistant, in the truest sense: it books appointments, plans your week, and ' +
