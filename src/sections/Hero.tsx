@@ -39,8 +39,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
         >
-          A multidisciplinary designer crafting meaningful experiences at the intersection of art
-          and technology.
+          Symbiosis, by design. People and machines are learning to live together. 
+          I design where they meet, working across product, code, art, and sound. 
+          Raised in the heart of Brooklyn, NY.
         </motion.p>
       </div>
     </section>
